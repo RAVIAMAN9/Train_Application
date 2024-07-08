@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>rkj.trainService</groupId>
 	<artifactId>trainService</artifactId>
-	<version>2.0.0-SNAPSHOT</version>
+	<version>2.0.1-SNAPSHOT</version>
 	<name>trainService</name>
 	<description>Demo project for train service</description>
 	<url/>
@@ -31,6 +31,7 @@
 		<objLib.version>1.5.1-SNAPSHOT</objLib.version>
 		<repository.version>1.7.5-SNAPSHOT</repository.version>
 		<clientRepo.version>1.0.0-SNAPSHOT</clientRepo.version>
+		<spring-cloud.version>2023.0.2</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,6 +47,10 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>rkj.objLib</groupId>
@@ -76,6 +81,17 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
