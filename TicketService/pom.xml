@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>rkj.ticketService</groupId>
+	<artifactId>ticketService</artifactId>
+	<version>2.0.0-SNAPSHOT</version>
+	<name>ticketService</name>
+	<description>Demo project for ticket service</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>22</java.version>
+		<objLib.version>1.5.1-SNAPSHOT</objLib.version>
+		<repository.version>1.7.5-SNAPSHOT</repository.version>
+		<clientRepo.version>1.0.0-SNAPSHOT</clientRepo.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>rkj.objLib</groupId>
+			<artifactId>objLib</artifactId>
+			<version>${objLib.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>rkj.clientRepo</groupId>
+			<artifactId>clientRepo</artifactId>
+			<version>${clientRepo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>rkj.Repository</groupId>
+			<artifactId>Repo</artifactId>
+			<version>${repository.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
