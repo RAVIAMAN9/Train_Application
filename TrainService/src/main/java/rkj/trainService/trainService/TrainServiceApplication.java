@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication(scanBasePackages = {"rkj.Repository.Repo","rkj.stationService.stationService",
+@SpringBootApplication(scanBasePackages = {"rkj.Repository.Repo","rkj.trainService.trainService",
 "rkj.clientRepo.clientRepo"})
 @EnableFeignClients
 public class TrainServiceApplication {
