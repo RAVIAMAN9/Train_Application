@@ -7,6 +7,7 @@ import rkj.Repository.Repo.StationRepository.StationPersistence;
 import rkj.Repository.Repo.TrainRepositories.TrainPersistance;
 import rkj.objLib.objLib.StationServiceObject.Station;
 import rkj.objLib.objLib.TrainServiceObject.Dto.Train;
+import rkj.objLib.objLib.TrainServiceObject.Dto.TrainResponse;
 
 @Service
 public class TrainService {
@@ -21,7 +22,7 @@ public class TrainService {
         return "train details added successfully.";
     }
 
-    public Train getTrainDetails(Integer trainNumber) {
+    public TrainResponse getTrainDetails(Integer trainNumber) {
         return trainPersistance.getTrainDetails(trainNumber);
 
     }

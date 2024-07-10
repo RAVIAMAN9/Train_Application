@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rkj.objLib.objLib.TrainServiceObject.Dto.Train;
+import rkj.objLib.objLib.TrainServiceObject.Dto.TrainResponse;
 import rkj.trainService.trainService.Service.TrainService;
 
 @RestController
@@ -22,8 +23,8 @@ public class TrainResource {
     }
 
     @GetMapping("/{trainNumber}")
-    public ResponseEntity<Train> getTrainDetails(@PathVariable Integer trainNumber){
-        return new ResponseEntity<Train>(trainService.getTrainDetails(trainNumber),
+    public ResponseEntity<TrainResponse> getTrainDetails(@PathVariable Integer trainNumber){
+        return new ResponseEntity<TrainResponse>(trainService.getTrainDetails(trainNumber),
                 HttpStatus.OK);
     }
 
