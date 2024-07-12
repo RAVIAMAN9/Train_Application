@@ -1,5 +1,6 @@
 package rkj.ticketService.ticketService.Service;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,6 +28,7 @@ public class TicketService {
     @Autowired
     private TrainClient trainClient;
 
+    @CircuitBreaker(name = "${spring.application.name}", fallbackMethod = "getDefaultTrainDetails")
     public TicketResponse bookTicket(Ticket ticket){
         //String uri = "http://localhost:8080/train/"+ticket.getTrainNumber();
 //        Train train = restTemplate.getForEntity("http://localhost:8080/train/"+ticket.getTrainNumber(),
@@ -37,6 +39,20 @@ public class TicketService {
 //                .bodyToMono(Train.class)
 //                .block();
         Train train = trainClient.getTrainDetails(ticket.getTrainNumber());
+        TicketResponse tr = ticketPersistence.addTicket(ticket);
+        tr.setTrainName(train.getTrainName());
+        tr.setBoarding(ticket.getBoarding());
+        tr.setDestination(ticket.getDestination());
+        return tr;
+    }
+
+    public TicketResponse getDefaultTrainDetails(Ticket ticket, Exception exception){
+        Train train = new Train();
+        train.setTrainNumber(12345);
+        train.setTrainName("NA");
+        train.setSource("NA");
+        train.setDestination("NA");
+        train.setTrainType("EXPRESS");
         TicketResponse tr = ticketPersistence.addTicket(ticket);
         tr.setTrainName(train.getTrainName());
         tr.setBoarding(ticket.getBoarding());
