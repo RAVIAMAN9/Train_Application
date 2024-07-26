@@ -3,7 +3,7 @@ package rkj.stationService.stationService.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rkj.Repository.Repo.StationStoppageRepository.StationStoppagePersistance;
-import rkj.objLib.objLib.StationStoppageObject.StationStoppage;
+import rkj.objLib.objLib.ServiceObjects.StationStoppageObject.StationStoppage;
 
 import java.util.List;
 
