@@ -33,7 +33,7 @@ public class TrainResource {
     @PatchMapping("/add-stoppage")
     public String addStoppageInTrain(@RequestParam("trainNumber") Integer trainNumber,
                                      @RequestParam("stoppageCode") String stoppageCode){
-
+        trainService.updateTrain(trainNumber,stoppageCode);
         return "success";
     }
 

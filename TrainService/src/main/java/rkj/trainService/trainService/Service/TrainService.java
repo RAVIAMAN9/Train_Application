@@ -7,6 +7,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import rkj.Repository.Repo.TrainRepositories.TrainPersistance;
 //import rkj.objLib.objLib.AsynchronousObjects.RabbitMqObjects.TicketEvent;
+import rkj.clientRepo.clientRepo.AsyncClients.Producer.TrainStoppageProducer;
+import rkj.objLib.objLib.AsynchronousObjects.KafkaObjects.TrainStoppage;
+import rkj.objLib.objLib.AsynchronousObjects.RabbitMqObjects.TicketEvent;
 import rkj.objLib.objLib.ServiceObjects.TrainServiceObject.Dto.Train;
 import rkj.objLib.objLib.ServiceObjects.TrainServiceObject.Dto.TrainResponse;
 
@@ -15,6 +18,9 @@ public class TrainService {
 
     @Autowired
     private TrainPersistance trainPersistance;
+
+    @Autowired
+    private TrainStoppageProducer tsp;
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -31,8 +37,10 @@ public class TrainService {
 
     }
 
-//    public void updateTrain(TicketEvent ticketEvent) {
-//        trainPersistance.updateTrain(ticketEvent);
-//    }
-
+    public void updateTrain(Integer trainNumber, String stationCode) {
+        TrainStoppage ts = new TrainStoppage();
+        ts.setTrainNumber(trainNumber);
+        ts.setStoppageCode(stationCode);
+        tsp.sendMessage(ts);
+    }
 }

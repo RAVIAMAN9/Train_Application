@@ -1,5 +1,6 @@
 package rkj.stationService.stationService.Resource;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -26,14 +27,21 @@ public class StationStoppageResource {
     private StationStoppageService stationStoppageService;
 
     @PostMapping("/add-station")
-    public ResponseEntity<String> addStationStoppage(@RequestBody StationStoppage stationStoppage) {
-        stationStoppageService.addStationStoppage(stationStoppage);
-        return new ResponseEntity<String>("station added :"+stationStoppage.getStationCode(), HttpStatus.CREATED);
+    public ResponseEntity<String> addStationStoppage(@RequestBody Station station) {
+        stationStoppageService.addStationStoppage(station);
+        return new ResponseEntity<String>("station added :"+station.getStationCode(), HttpStatus.CREATED);
     }
 
     @GetMapping("/{stationCode}")
     public ResponseEntity<List<Integer>> getTrainList(@PathVariable String stationCode){
         return new ResponseEntity<List<Integer>>(stationStoppageService.getTrainList(stationCode),HttpStatus.FOUND);
+    }
+
+    @PatchMapping("/update")
+    public String updateTrainAtStoppage(@RequestParam("stationCode") String stationCode,
+                                        @RequestParam("trainNumber") Integer trainNumber) throws JsonProcessingException {
+        stationStoppageService.updateTrainAtStoppage(stationCode, trainNumber);
+        return "success";
     }
 
 //    @PostMapping("/add-station")

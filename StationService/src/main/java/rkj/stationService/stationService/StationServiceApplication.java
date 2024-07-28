@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication(scanBasePackages = {"rkj.Repository.Repo","rkj.stationService.stationService",
-"rkj.clientRepo.clientRepo"})
+"rkj.clientRepo.clientRepo","rkj.objLib.objLib"})
 @EnableDiscoveryClient
 public class StationServiceApplication {
 
