@@ -1,6 +1,7 @@
 package rkj.trainService.trainService.Resource;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -32,7 +33,7 @@ public class TrainResource {
 
     @PatchMapping("/add-stoppage")
     public String addStoppageInTrain(@RequestParam("trainNumber") Integer trainNumber,
-                                     @RequestParam("stoppageCode") String stoppageCode){
+                                     @RequestParam("stoppageCode") String stoppageCode) throws JsonProcessingException {
         trainService.updateTrain(trainNumber,stoppageCode);
         return "success";
     }

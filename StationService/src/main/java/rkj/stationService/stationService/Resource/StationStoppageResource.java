@@ -33,8 +33,8 @@ public class StationStoppageResource {
     }
 
     @GetMapping("/{stationCode}")
-    public ResponseEntity<List<Integer>> getTrainList(@PathVariable String stationCode){
-        return new ResponseEntity<List<Integer>>(stationStoppageService.getTrainList(stationCode),HttpStatus.FOUND);
+    public ResponseEntity<Station> getTrainList(@PathVariable String stationCode){
+        return new ResponseEntity<Station>(stationStoppageService.getTrainList(stationCode),HttpStatus.FOUND);
     }
 
     @PatchMapping("/update")

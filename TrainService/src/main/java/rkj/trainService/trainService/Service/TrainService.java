@@ -1,5 +1,6 @@
 package rkj.trainService.trainService.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -7,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import rkj.Repository.Repo.TrainRepositories.TrainPersistance;
 //import rkj.objLib.objLib.AsynchronousObjects.RabbitMqObjects.TicketEvent;
+import rkj.Repository.Repo.TrainRepositories.TrainRepo;
 import rkj.clientRepo.clientRepo.AsyncClients.Producer.TrainStoppageProducer;
 import rkj.objLib.objLib.AsynchronousObjects.KafkaObjects.TrainStoppage;
 import rkj.objLib.objLib.AsynchronousObjects.RabbitMqObjects.TicketEvent;
@@ -22,6 +24,9 @@ public class TrainService {
     @Autowired
     private TrainStoppageProducer tsp;
 
+    @Autowired
+    TrainRepo tr;
+
     private ObjectMapper mapper = new ObjectMapper();
 
     public String addTrain(Train train) {
@@ -30,14 +35,14 @@ public class TrainService {
     }
 
     public TrainResponse getTrainDetails(Integer trainNumber) {
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        System.out.println(encoder.encode("rkj"));
-        System.out.println(encoder.encode("akj"));
+//        PasswordEncoder encoder = new BCryptPasswordEncoder();
+//        System.out.println(encoder.encode("rkj"));
+//        System.out.println(encoder.encode("akj"));
         return trainPersistance.getTrainDetails(trainNumber);
 
     }
 
-    public void updateTrain(Integer trainNumber, String stationCode) {
+    public void updateTrain(Integer trainNumber, String stationCode) throws JsonProcessingException {
         TrainStoppage ts = new TrainStoppage();
         ts.setTrainNumber(trainNumber);
         ts.setStoppageCode(stationCode);
