@@ -7,6 +7,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rkj.objLib.objLib.Exception.ExceptionObjects.StationException;
 import rkj.objLib.objLib.ServiceObjects.StationServiceObject.Station;
 import rkj.objLib.objLib.ServiceObjects.StationStoppageObject.StationStoppage;
 import rkj.stationService.stationService.Service.StationStoppageService;
@@ -27,7 +28,7 @@ public class StationStoppageResource {
     private StationStoppageService stationStoppageService;
 
     @PostMapping("/add-station")
-    public ResponseEntity<String> addStationStoppage(@RequestBody Station station) {
+    public ResponseEntity<String> addStationStoppage(@RequestBody Station station) throws StationException {
         stationStoppageService.addStationStoppage(station);
         return new ResponseEntity<String>("station added :"+station.getStationCode(), HttpStatus.CREATED);
     }

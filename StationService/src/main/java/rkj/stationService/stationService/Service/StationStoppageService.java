@@ -7,6 +7,7 @@ import rkj.Repository.Repo.StationRepository.StationPersistence;
 import rkj.Repository.Repo.StationStoppageRepository.StationStoppagePersistance;
 import rkj.clientRepo.clientRepo.AsyncClients.Producer.TrainStoppageProducer;
 import rkj.objLib.objLib.AsynchronousObjects.KafkaObjects.TrainStoppage;
+import rkj.objLib.objLib.Exception.ExceptionObjects.StationException;
 import rkj.objLib.objLib.ServiceObjects.StationServiceObject.Station;
 import rkj.objLib.objLib.ServiceObjects.StationStoppageObject.StationStoppage;
 
@@ -24,7 +25,7 @@ public class StationStoppageService {
     @Autowired
     private TrainStoppageProducer trainStoppageProducer;
 
-    public void addStationStoppage(Station station) {
+    public void addStationStoppage(Station station) throws StationException {
         stationPersistence.addStation(station);
     }
 

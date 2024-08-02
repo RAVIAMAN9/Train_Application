@@ -12,6 +12,7 @@ import rkj.Repository.Repo.TrainRepositories.TrainRepo;
 import rkj.clientRepo.clientRepo.AsyncClients.Producer.TrainStoppageProducer;
 import rkj.objLib.objLib.AsynchronousObjects.KafkaObjects.TrainStoppage;
 import rkj.objLib.objLib.AsynchronousObjects.RabbitMqObjects.TicketEvent;
+import rkj.objLib.objLib.Exception.ExceptionObjects.TrainException;
 import rkj.objLib.objLib.ServiceObjects.TrainServiceObject.Dto.Train;
 import rkj.objLib.objLib.ServiceObjects.TrainServiceObject.Dto.TrainResponse;
 
@@ -29,17 +30,13 @@ public class TrainService {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    public String addTrain(Train train) {
+    public String addTrain(Train train) throws TrainException {
         trainPersistance.addTrain(train);
         return "train details added successfully.";
     }
 
     public TrainResponse getTrainDetails(Integer trainNumber) {
-//        PasswordEncoder encoder = new BCryptPasswordEncoder();
-//        System.out.println(encoder.encode("rkj"));
-//        System.out.println(encoder.encode("akj"));
         return trainPersistance.getTrainDetails(trainNumber);
-
     }
 
     public void updateTrain(Integer trainNumber, String stationCode) throws JsonProcessingException {

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import rkj.objLib.objLib.Exception.ExceptionObjects.TrainException;
 import rkj.objLib.objLib.ServiceObjects.TrainServiceObject.Dto.Train;
 import rkj.objLib.objLib.ServiceObjects.TrainServiceObject.Dto.TrainResponse;
 import rkj.trainService.trainService.Service.TrainService;
@@ -26,7 +27,7 @@ public class TrainResource {
 
     //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add-train")
-    public ResponseEntity<String> addTrain(@RequestBody Train train) {
+    public ResponseEntity<String> addTrain(@RequestBody Train train) throws TrainException {
         return new ResponseEntity<String>("added the train with train name: "+trainService.addTrain(train)+" successfully",
                 HttpStatus.CREATED);
     }
